@@ -9,22 +9,10 @@ import './index.scss';
 
 import ResultView from './views/ResultView';
 import HomeView from './views/HomeView';
+import { itemsPack2, itemsPack1 } from './items';
 
 function App({items}) {  
-  items = items || [
-    {
-      name: 'Iphone 12',
-      image: 'https://i2.rozetka.ua/goods/20299422/245162131_images_20299422206.jpg',
-    }, 
-    {
-      name: 'OnePlus 8T',
-      image: 'https://mobiltelefon.ru/photo/september20/14/samsung_ty_li_eto_oneplus_8t_na_kachestvennyh_izobrazheniah_picture2_0.jpg',
-    },
-    {
-      name: 'Samsung S20',
-      image: 'https://i.citrus.ua/uploads/content/product-photos/topchiy/February-2020/SM-G980FLBDSEK_07.jpg',
-    }
-  ];
+  items = items || itemsPack2
   return (
     <div className="cmrii">
       <Router>

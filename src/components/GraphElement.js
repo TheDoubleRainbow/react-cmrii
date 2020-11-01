@@ -11,7 +11,7 @@ export const GraphElement = ({result, maxValue, label}) => {
       <div
         style={{ width: `${width}%`, background: color }}
         className="graph-line">
-        {result[label]}
+        {result[label] || 0}
       </div>
     </div>
   </div>

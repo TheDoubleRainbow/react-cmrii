@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { GraphElement } from '../components/GraphElement';
 import store from '../store/store';
-import { findItem } from '../utils/result';
+import { findItem, resultToArray, sendStatistics } from '../utils/result';
 
 export default function ResultView({ items }) {
   const history = useHistory();
 
   const result = store.getState().result;
-  const resultLabels = Object.keys(result);
-  const maxValue = Math.max.apply(null, Object.values(result).map(Math.abs));;
-  const resultAlt = findItem(resultLabels[0], items);
+  const resultArray = resultToArray(result);
 
-  console.log('result', result);
-  if(!resultLabels.length) {
+  useEffect(() => {
+    if(resultArray.length) {
+      sendStatistics(resultArray)
+    };
+  }, [resultArray])
+
+  if(!resultArray.length) {
     history.push('/');
     return null;
   }
+
+  const maxValue = Math.max.apply(null, Object.values(result).map(Math.abs));;
+  const resultAlt = findItem(items, resultArray[0].name);
+
+  console.log('result', resultArray);
   return (
     <div className="wrapper">
       <div className="results-header">
@@ -29,8 +37,8 @@ export default function ResultView({ items }) {
       <hr />
       <h2>Result graph:</h2>
       <div className="results-graph">
-        {resultLabels.map((label, i) =>
-          <GraphElement key={i} result={result} label={label} maxValue={maxValue} />)
+        {resultArray.map((item, i) =>
+          <GraphElement key={i} result={result} label={item.name} maxValue={maxValue} />)
         }
       </div>
     </div>

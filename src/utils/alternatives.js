@@ -36,3 +36,16 @@ export const handleAnswer = (alternatives, results, value, maxValue) => {
   });
   return newResults;
 }
+
+export const getRecommendation = (items, primaryItem) => {
+  return fetch('http://localhost:3001/getRecommends', {
+    method: 'POST',
+    body: JSON.stringify({
+      items,
+      primaryItem,
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+}
