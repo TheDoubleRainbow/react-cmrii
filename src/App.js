@@ -9,10 +9,10 @@ import './index.scss';
 
 import ResultView from './views/ResultView';
 import HomeView from './views/HomeView';
-import { itemsPack2, itemsPack1 } from './items';
+import { itemsPack2, itemsPack1, itemsPack3 } from './items';
 
 function App({items}) {  
-  items = items || itemsPack2
+  items = items || itemsPack1
   return (
     <div className="cmrii">
       <Router>
